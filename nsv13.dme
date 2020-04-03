@@ -13,7 +13,11 @@
 // END_PREFERENCES
 
 // BEGIN_INCLUDE
-#include "_maps\_basemap.dm"
+#include "_maps\enterprise.dm"
+#include "_maps\map_files\Enterprise\job_changes.dm"
+#include "_maps\map_files\Enterprise\Enterprise1.dmm"
+#include "_maps\map_files\Enterprise\Enterprise2.dmm"
+#include "_maps\map_files\Enterprise\overmap.dmm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\_globals.dm"
