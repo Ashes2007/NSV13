@@ -43,14 +43,16 @@
 /obj/structure/fighter_component/underconstruction_fighter
 	name = "Incomplete Fighter"
 	desc = "An Incomplete Fighter"
-	icon = 'icons/obj/bedsheets.dmi'
-	icon_state = "sheetwhite"
+	icon = 'icons/obj/shipconstruction.dmi'
+	icon_state = "fighter"
 	anchored = TRUE
 	density = TRUE
 	climbable = TRUE
 	var/build_state = BS_FUSE
 	var/fighter_name = null
+	var/numericalstate = 0
 
+// hahaha state machine go brrrrrrr
 /obj/structure/fighter_component/underconstruction_fighter/examine(mob/user)
 	. = ..()
 	switch(build_state)
@@ -796,85 +798,8 @@
 
 /obj/structure/fighter_component/underconstruction_fighter/update_icon()
 	cut_overlays()
-	switch(build_state)
-		if(BS_FUSE)
-			icon_state = "sheetgrey"
-		if(BS_FUSE_BOLT)
-			icon_state = "sheetred"
-		if(BS_FUSE_WELD)
-			icon_state = "sheetorange"
-		if(BS_EMPE)
-			icon_state = "sheetyellow"
-		if(BS_EMPE_BOLT)
-			icon_state = "sheetgreen"
-		if(BS_EMPE_WELD)
-			icon_state = "sheetblue"
-		if(BS_WING1)
-			icon_state = "sheetpurple"
-		if(BS_WING1_BOLT)
-			icon_state = "sheetbrown"
-		if(BS_WING1_WELD)
-			icon_state = "sheetblack"
-		if(BS_WING2)
-			icon_state = "sheetrainbow"
-		if(BS_WING2_BOLT)
-			icon_state = "sheetclown"
-		if(BS_WING2_WELD)
-			icon_state = "sheetblack"
-		if(BS_LANG)
-			icon_state = "sheetmime"
-		if(BS_LANG_BOLT)
-			icon_state = "sheetmedical"
-		if(BS_ARMP)
-			icon_state = "sheetrd"
-		if(BS_ARMP_SCREW)
-			icon_state = "sheetcmo"
-		if(BS_ARMP_WELD)
-			icon_state = "sheethos"
-		if(BS_WIRE1)
-			icon_state = "sheetce"
-		if(BS_WIRE1_MULTI)
-			icon_state = "sheethop"
-		if(BS_FUET)
-			icon_state = "sheetcaptain"
-		if(BS_FUET_BOLT)
-			icon_state = "sheetian"
-		if(BS_FUEL)
-			icon_state = "sheetclown"
-		if(BS_FUEL_BOLT)
-			icon_state = "sheetcentcom"
-		if(BS_ENGI1)
-			icon_state = "sheetsyndie"
-		if(BS_ENGI1_WELD)
-			icon_state = "sheetcult"
-		if(BS_ENGI2)
-			icon_state = "sheetwiz"
-		if(BS_ENGI2_WELD)
-			icon_state = "sheetqm"
-		if(BS_THRU_MULTI)
-			icon_state = "sheetUSA"
-		if(BS_COCP)
-			icon_state = "random_bedsheet"
-		if(BS_COCP_SCREW)
-			icon_state = "sheetcosmos"
-		if(BS_COCP_BOLT)
-			icon_state = "sheetgrey"
-		if(BS_WIRE2)
-			icon_state = "sheetred"
-		if(BS_AVIO)
-			icon_state = "sheetorange"
-		if(BS_AVIO_SCREW)
-			icon_state = "sheetyellow"
-		if(BS_AVIO_MULTI)
-			icon_state = "sheetgreen"
-		if(BS_TARS)
-			icon_state = "sheetblue"
-		if(BS_TARS_SCREW)
-			icon_state = "sheetpurple"
-		if(BS_TARS_MULTI)
-			icon_state = "sheetbrown"
-		if(BS_PAINT)
-			icon_state = "sheetblack"
+	icon_state = "[initial(icon_state)]_progress[state]"
+
 
 #undef BS_FUSE
 #undef BS_FUSE_BOLT
